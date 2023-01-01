@@ -8,7 +8,7 @@ class Game {
 
     this.loadJSON();
     // this.resize();
-    window.addEventListener("resize", this.resize.bind(this));
+    // window.addEventListener("resize", this.resize.bind(this));
   }
 
   // resize() {
@@ -44,11 +44,7 @@ class Game {
     }
 
     if ("ontouchstart" in window) {
-      this.canvas.addEventListener(
-        "touchstart",
-        tap,
-        supportsPassive ? { passive: true } : false
-      );
+      this.canvas.addEventListener("touchstart", tap);
     } else {
       this.canvas.addEventListener("mousedown", tap);
     }
@@ -148,10 +144,9 @@ class Game {
     for (let sprite of this.sprites) {
       sprite.render();
     }
-
     this.context.fillText(
       "Score: " + this.score,
-      this.canvas.width / 2 - 15,
+      this.canvas.width / 2 - 30,
       30
     );
   }
