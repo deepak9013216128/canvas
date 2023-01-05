@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Collapse Game</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas
+      id="game"
+      width="800"
+      height="600"
+      style="border: 1px solid #000000;"
+    ></canvas>
+    <script src="game.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function (e) {
+        const canvas = document.getElementById("game");
+        canvas.width = window.innerWidth - 7;
+        canvas.height = window.innerHeight - 7;
+        const game = new Game();
+        window.game = game;
+      });
+    </script>
+  </body>
+</html>
