@@ -1,0 +1,48 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake game</title>
+    <style>
+      body {
+        background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+      canvas {
+        width: 99%;
+        height: 99%;
+      }
+      @media screen and (min-width: 480px) {
+        canvas {
+          width: 480px;
+          height: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas
+      id="game"
+      width="400"
+      height="600"
+      style="border: 1px solid black;"
+    ></canvas>
+    <div id="progress">
+      <div class="meter red">
+        <span id="progress-bar" style="width: 0%;"></span>
+      </div>
+    </div>
+    <script src="game.js"></script>
+    <script src="spritoon.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function (event) {
+        const game = new Game();
+        window.game = game; //For debugging
+      });
+    </script>
+  </body>
+</html>
