@@ -20,7 +20,7 @@ class Game {
     this.level = 1;
     this.apple = {};
     this.fps = 1;
-    this.speed = 5; //Starting speed of snake, pixel travel per second
+    this.speed = 8; //Starting speed of snake, pixel travel per second
     this.font = "30px Verdana";
     this.txtoptions = {
       alignment: "center",
@@ -31,7 +31,7 @@ class Game {
     };
     const game = this;
     const options = {
-      assets: ["snake.json", "snake.png"],
+      assets: ["snake.json", "snake.png", "background.png"],
       oncomplete: function () {
         const progress = document.getElementById("progress");
         progress.style.display = "none";
@@ -54,6 +54,8 @@ class Game {
       game.spriteImage.onload = function () {
         game.init();
       };
+      game.backgroundImage = new Image();
+      game.backgroundImage.src = game.spriteData.meta.background;
     });
   }
 
@@ -108,7 +110,7 @@ class Game {
     this.snakeDirection = 1;
     this.movedelay = 0;
     this.snake = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
       this.snake.push({
         x:
           Math.floor(this.config.cols / 2) -
@@ -261,11 +263,19 @@ class Game {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.fillStyle = "#fff";
 
-    this.drawBox();
+    this.context.drawImage(
+      this.backgroundImage,
+      0,
+      0,
+      this.canvas.width,
+      this.canvas.height
+    );
+
+    // this.drawBox();
     this.drawSnake();
     this.drawApple();
     this.context.font = this.font;
-    this.context.fillStyle = "#999";
+    this.context.fillStyle = "#000";
     let str = String(`Score: ${this.score}`);
     let txt = this.context.measureText(str);
     this.context.fillText(str, 310 - txt.width / 2, 25);
@@ -282,6 +292,8 @@ class Game {
     );
     this.context.stroke();
     this.context.beginPath();
+
+    this.context.fillStyle = "#999";
     this.context.fillRect(
       this.canvas.width / 2 - 150,
       this.canvas.height / 2 - 100,
@@ -300,7 +312,7 @@ class Game {
     );
     this.context.beginPath();
     this.context.font = "20px Verdana";
-    this.context.fillStyle = "#000";
+    this.context.fillStyle = "#fff";
     str = String(`Your Score is ${this.score}`);
     txt = this.context.measureText(str);
     this.context.fillText(
